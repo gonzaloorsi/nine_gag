@@ -1,0 +1,13 @@
+<% if current_user %>
+  Hello <%= current_user.name %>!
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+<% else %>
+  Welcome to 9gag!
+
+  <p>
+  You are not signed in, please <%= link_to "sign_up", new_user_registration_path %>
+  or <%= link_to "sign in", new_user_session_path %>.
+  </p>
+<% end %>
+
+
