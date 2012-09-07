@@ -1,6 +1,16 @@
 <% if current_user %>
   Hello <%= current_user.name %>!
   <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
+  <p>
+  Would you like to upload a new image?
+  </p>
+
+  <%= form_for @image, :url => images_path, :html => { :multipart => true } do |form| %>
+    <%= form.file_field :picture %>
+    <%= form.submit "Upload" %>
+  <% end %>
+
 <% else %>
   Welcome to 9gag!
 
@@ -10,4 +20,5 @@
   </p>
 <% end %>
 
-
+<hr/>
+<%= render :partial => "images/all" %>
