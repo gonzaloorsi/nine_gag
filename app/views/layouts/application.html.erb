@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NineGag</title>
+  <title>9gag | <%=  yield(:title) %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= render "layouts/shim" %>
 </head>
 <body>
+  <%= render "layouts/header"%>
+    <div id="nav">
+      <span class="left">
+    <%= link_to "Home", root_path, id: "link2"%> |
+    <%= link_to "Help", help_path, id: "link2"%> |
+    <%= link_to "About", about_path, id: "link2" %>
+      </span>
+    
+
+      <span class="right">
+    <% if current_user %>
+      Hello <%= link_to current_user.name.capitalize, "#", id: "link2"%>!
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete, id:"link2" %>
+  
+  <% else %>
+
+  Please <%= link_to "sign_in", new_user_session_path, id: "link2" %> or
+  <%= link_to "sign_up", new_user_registration_path, id: "link2" %>!
+
+ <% end %>
+      </span>
+    </div>
+
+
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 

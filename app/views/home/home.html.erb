@@ -1,0 +1,23 @@
+
+<div id="whole_page">
+<% if current_user %>
+  
+  <p>
+  Would you like to upload a new image?
+  </p>
+
+  <%= form_for @image, :url => images_path, :html => { :multipart => true } do |form| %>
+    <%= form.file_field :picture %>
+    <%= form.submit "Upload" %>
+  <% end %>
+
+
+  <% end %>
+
+
+
+<hr/>
+<%= render :partial => "images/all" %>
+<hr/>
+
+</div>
