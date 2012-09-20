@@ -19,7 +19,8 @@
 
       <span class="right">
     <% if current_user %>
-      Hello <%= link_to current_user.name.capitalize, "#", id: "link2"%>!
+        
+      Hello <%= link_to current_user.name.capitalize, profile_path, id: "link2"%>!
       <%= link_to "Sign out", destroy_user_session_path, :method => :delete, id:"link2" %>
   
   <% else %>
@@ -36,6 +37,7 @@
   <p class="alert"><%= alert %></p>
 
 <%= yield %>
-
-</body>
+ 
+<%= debug(params) if Rails.env.development? %>
+s</body>
 </html>

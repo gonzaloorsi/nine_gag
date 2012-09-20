@@ -1,3 +1,38 @@
-<% @images.each do |image| %>
-  <%= link_to(image_tag(image.picture.url(:thumb)),image) %>
+<% @images.reverse_each do |image| %>
+
+
+<%= link_to(image_tag(image.picture.url(:medium)),image) %>
+
+
+<% if current_user && current_user.admin?%>
+<%= form_for image, :url => image, :html => { :method => :delete } do |f|%>
+<div class="button"><%= f.submit "Delete" %></div>
+
+<% end %>
+<% end %>
+<% if current_user %>
+<%= form_for image, :url => image_like_path(image) do |f|%>
+<div class="text"><%= f.submit 'Like' %>
+  <%if image.likes.to_a.count == 0%>
+  Nobody likes this! :(
+  <%elsif image.likes.to_a.count == 1%>
+  1 person likes this!
+  <%else%>
+  <%= image.likes.to_a.count %> people like this!</div>
+<%  end %>
+<%  end %>
+<%= form_for image, :url => image_dislike_path(image) do |f|%>
+<div class="text"><%= f.submit 'Dislike' %>
+   <%if image.unlikes.to_a.count == 0%>
+  Nobody dislikes this!
+  <%elsif image.unlikes.to_a.count == 1%>
+  1 person dislikes this!
+  <%else%>
+  <%= image.unlikes.to_a.count %> people dislike this!</div>
+<%  end %>
+<%  end %>
+
+<% end %>
+<hr/>
+
 <% end %>

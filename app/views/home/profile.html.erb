@@ -1,0 +1,19 @@
+<%  if current_user %>
+<h1>Your PROFILE</h1>
+<hr/>
+<br/>
+<%if current_user.admin?%>
+Admin
+<%else%>
+User
+<%end%>
+<br/>
+<hr/>
+Name: <%= current_user.name.capitalize %>
+<br/>
+Email: <%= current_user.email %>
+<br/>
+
+
+<h1><%=  gravatar_for(current_user) %></h1>
+<% end %>

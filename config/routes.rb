@@ -1,12 +1,21 @@
 NineGag::Application.routes.draw do
 
   
-  resources :images
+  resources :images do
+  match '/like',    to: 'images#upvote'
+  match '/dislike', to: 'images#downvote'
+  end
   devise_for :users
 
-  root :to => 'home#home'
+ 
+
+
+  root :to => 'home#index'
   match '/help',    to: 'home#help'
   match '/about',   to: 'home#about'
+  match '/images',  to: 'images#destroy', via: :delete
+  match '/profile', to: 'home#profile'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

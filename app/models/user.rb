@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :email, :name
+  validates :name, :email, presence: true
+  validates :email, uniqueness: {case_sensitive: false}
 
   before_create :set_name
 
@@ -14,4 +16,8 @@ class User < ActiveRecord::Base
     p email.inspect
     self.name = email.split("@").first.split(".").first
   end
+
+  def admin?
+     email == "marko.siftar@gmail.com"
+   end
 end
