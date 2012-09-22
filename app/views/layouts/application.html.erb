@@ -10,14 +10,14 @@
 <body>
   <%= render "layouts/header"%>
     <div id="nav">
-      <span class="left">
+      <div class="left">
     <%= link_to "Home", root_path, id: "link2"%> |
     <%= link_to "Help", help_path, id: "link2"%> |
     <%= link_to "About", about_path, id: "link2" %>
-      </span>
+      </div>
     
 
-      <span class="right">
+      <div class="right">
     <% if current_user %>
         
       Hello <%= link_to current_user.name.capitalize, profile_path, id: "link2"%>!
@@ -29,15 +29,19 @@
   <%= link_to "sign_up", new_user_registration_path, id: "link2" %>!
 
  <% end %>
-      </span>
-    </div>
+      </div>
+    
 
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
+<%= notice %>
+<%= alert %>
+</div>
+<br/>
 <%= yield %>
- 
+  
+<br/>
+<%= render 'layouts/footer' %>
+<br/>
 <%= debug(params) if Rails.env.development? %>
-s</body>
+</body>
 </html>
