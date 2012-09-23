@@ -2,6 +2,9 @@ class HomeController < ApplicationController
   def index
     @image = Image.new
     @images = Image.all
+    @users = User.all
+    @micropost = Micropost.new
+    @microposts = Micropost.all
   end
 
   def help

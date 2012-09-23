@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120920154920) do
+ActiveRecord::Schema.define(:version => 20120922215045) do
 
   create_table "images", :force => true do |t|
     t.datetime "created_at",           :null => false
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(:version => 20120920154920) do
     t.datetime "picture_updated_at"
     t.string   "likes"
     t.string   "unlikes"
+    t.integer  "user_id"
+  end
+
+  create_table "microposts", :force => true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "image_id"
   end
 
   create_table "users", :force => true do |t|

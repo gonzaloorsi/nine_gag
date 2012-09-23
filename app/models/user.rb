@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :email, :name
   validates :email, presence: true
+  has_many :images
+  has_many :microposts, dependent: :destroy
   #validates :email, uniqueness: {case_sensitive: false}
 
   before_create :set_name
