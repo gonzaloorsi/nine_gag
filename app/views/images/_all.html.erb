@@ -1,3 +1,4 @@
+
 <% @images.reverse_each do |image| %>
 
 <%= link_to(image_tag(image.picture.url(:medium)),image) %>
@@ -18,11 +19,11 @@
           <%= f.submit 'Like' %>
         <% end %>
         <%if image.likes.to_a.count == 0%>
-          Nobody likes this! :(
+          Nobody likes this image! :(
         <%elsif image.likes.to_a.count == 1%>
-          1 person likes this!
+          1 person likes this image!
         <%else%>
-          <%= image.likes.to_a.count %> people like this!
+          <%= image.likes.to_a.count %> people like this image!
         <% end %>
       </div>
     <% end %>
@@ -33,17 +34,42 @@
           <%= f.submit 'Dislike' %>
         <% end %>
         <%if image.unlikes.to_a.count == 0%>
-          Nobody dislikes this!
+          Nobody dislikes this image!
         <%elsif image.unlikes.to_a.count == 1%>
-          1 person dislikes this!
+          1 person dislikes this image!
         <%else%>
-          <%= image.unlikes.to_a.count %> people dislike this!
+          <%= image.unlikes.to_a.count %> people dislike this image!
         <%  end %>
       </div>
     <%  end %>
+     
+<br/>
 
+    Comments ( <%= image.microposts.count %> )
+   
+    <%= form_for @micropost, :url => image_comment_path(image) do |comment| %>
+      <div class="field">
+        <%= comment.text_area :content, placeholder: "Compose new comment..." %>
+      </div>
+      <%= comment.submit "Comment" %>
+    <% end %>
+       <br/>
+       <% @microposts.each do |m| %>
+        <% if(m.image_id == image.id) %>
+          <% @users.each do |user| %>
+            <%if(user.id == m.user_id)%>
+              <%= user.name.capitalize %>
+            <% end %>
+          <% end %>
+     says: <b style="color: maroon;"><%= m.content%></b>
+    <br/>
+          
+       <% end %>
+      <% end %>
 <% end %>
 
+<br/>
 <hr/>
 
 <% end %>
+   

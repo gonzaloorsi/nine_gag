@@ -1,16 +1,20 @@
 class ImagesController < ApplicationController
   def create
     @image = Image.create(params[:image])
-    redirect_to root_path
+    
+    @image.update_attributes(:user_id => current_user.id)
+    redirect_to root_path, notice: "Upload successfully."
   end
 
   def show
     image = Image.find(params[:id])
+
     render :inline => "<%= image_tag image.picture.url %>",:locals => {:image => image}
   end
   def destroy
     image = Image.find(params[:id])
     image.destroy
+    flash[:notice] = "Picture destroyed."
     redirect_to root_url
   end
 
@@ -22,7 +26,7 @@ def upvote
   image.update_attributes(:likes => likes << current_user.id) unless (likes.include?(current_user.id) ||
       image.unlikes.to_a.include?(current_user.id))
   
-  redirect_to root_path
+  redirect_to root_path, notice: "You like photo!"
 end
 
 def downvote
@@ -33,7 +37,20 @@ def downvote
   image.update_attributes(:unlikes => unlikes << current_user.id) unless (unlikes.include?(current_user.id) ||
       image.likes.to_a.include?(current_user.id))
   
-  redirect_to root_path
+  redirect_to root_path, notice: "You don't like photo!"
+end
+
+def comment
+
+  image = Image.find(params[:image_id])
+  @micropost = current_user.microposts.build(params[:micropost])
+
+  if @micropost.save
+      flash[:notice] = "Comment created!"
+      redirect_to root_url
+  end
+
+  @micropost.update_attributes(:image_id => image.id) if @micropost
 end
 
 end

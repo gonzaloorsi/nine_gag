@@ -1,10 +1,14 @@
 NineGag::Application.routes.draw do
 
-  
+  resources :microposts, only: [:create, :destroy]
+
   resources :images do
   match '/like',    to: 'images#upvote'
   match '/dislike', to: 'images#downvote'
+  match '/comment', to: 'images#comment'
   end
+
+  resources :images, :has_many => :microposts
   devise_for :users
 
  

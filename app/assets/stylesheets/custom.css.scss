@@ -98,3 +98,25 @@ color: maroon;
 text-align: left;
 background: lightgrey;
 }
+
+textarea{
+        color: maroon;
+	width: 250px;
+	height: 50px;
+	border: 1px solid maroon;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background: lightGray;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+
+#comments
+{
+float: right;
+}
+
+#comment_box
+{
+float: left;
+}

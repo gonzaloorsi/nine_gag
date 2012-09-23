@@ -1,9 +1,16 @@
 
 <div id="whole_page">
 <% if current_user %>
-  
+  <br/>
+  <% if current_user.images.count == 0 %>
+    You don't have any uploaded images!
+  <% elsif current_user.images.count == 1 %>
+    You have 1 uploaded image!
+  <% else %>
+  You have <%= current_user.images.count %> uploaded images!
+  <% end %>
   <p>
-  Would you like to upload a new image?
+  Would you like to upload a new one?
   </p>
 
   <%= form_for @image, :url => images_path, :html => { :multipart => true } do |form| %>
@@ -17,6 +24,7 @@
 
 
 <hr/>
+
 <%= render :partial => "images/all" %>
 
 
