@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
   def create
     @image = Image.create(params[:image])
-    
+
     @image.update_attributes(:user_id => current_user.id)
     redirect_to root_path, notice: "Upload successfully."
   end
@@ -19,13 +19,13 @@ class ImagesController < ApplicationController
   end
 
 def upvote
-  
+
   image = Image.find(params[:image_id])
 
   likes = image.likes || []
   image.update_attributes(:likes => likes << current_user.id) unless (likes.include?(current_user.id) ||
       image.unlikes.to_a.include?(current_user.id))
-  
+
   redirect_to root_path, notice: "You like photo!"
 end
 

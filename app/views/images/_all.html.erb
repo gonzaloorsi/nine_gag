@@ -1,5 +1,5 @@
 
-<% @images.reverse_each do |image| %>
+<% @images.each do |image| %>
 
 <%= link_to(image_tag(image.picture.url(:medium)),image) %>
 

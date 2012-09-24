@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     @image = Image.new
-    @images = Image.all
+    @images = Image.page(params[:page] || 0).per(5)
     @users = User.all
     @micropost = Micropost.new
     @microposts = Micropost.all

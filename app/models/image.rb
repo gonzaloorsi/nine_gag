@@ -7,6 +7,6 @@ class Image < ActiveRecord::Base
   serialize :unlikes
   belongs_to :user
   has_many :microposts, dependent: :destroy
+  default_scope :order => "created_at DESC"
 
-  
 end
