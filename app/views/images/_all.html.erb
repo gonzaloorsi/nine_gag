@@ -1,7 +1,7 @@
 
 <% @images.reverse_each do |image| %>
 
-<%= link_to(image_tag(image.picture.url(:medium)),image) %>
+  <%= render image %>
 
 <% if current_user && current_user.admin?%>
   <%= form_for image, :url => image, :html => { :method => :delete } do |f|%>

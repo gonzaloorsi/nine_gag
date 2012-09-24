@@ -1,11 +1,49 @@
+<div id="headbar-wrap">
+
+
+  <div id="searchbar_container">
+    <div id="searchbar_wrapper">
+      <div id="header_searchbar" style="display:none;">
+        <div style="margin: 0px auto; position: static; overflow: hidden; height: 0px; "><div id="search_wrapper" style="margin: 0px; ">
+            <form action="http://9gag.com/search">
+              <input id="sitebar_search_header" type="text" class="search search_input" name="query" tabindex="1" placeholder="Search" autocomplete="off">
+            </form>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="head-bar">
+
+    <h1>
+      <a class="logo" href="#">9GAG</a>
+    </h1>
+    <ul class="main-menu" style="overflow:visible">
+      <li><a class="current" href="http://9gag.com/hot">Fun</a></li>
+      <li><a href="http://9gag.com/fast" onclick="GAG.GA.track(&#39;Lab&#39;, &#39;Clicked&#39;, &#39;Go&#39;);">Fast</a></li>
+      <li><a class="add-post " href="http://9gag.com/ch-submit" onclick="GAG.GA.track(&#39;New-Post&#39;, &#39;Clicked&#39;, &#39;Headbar&#39;);">Upload</a></li>
+    </ul>
+    <ul class="main-2-menu">
 
 
 
-<div id="header">
+
+      <li id="headbar-signup-button" class="toggle-enabled" style="display: none; ">
+      <a class="signup-button green" href="https://9gag.com/signup" label="Header" onclick=" rmt(&#39;http://goo.gl/4L7Xz?a=317&#39;); GAG.GA.track(&#39;Signup-Link&#39;, &#39;Clicked&#39;, &#39;Nav&#39;);">Y U No Signup?!</a>
+      </li>
 
 
-<%= link_to "9GAG", root_path, id: "link"%>
 
 
-</div>
+      <li><a href="https://9gag.com/login" class="button">Login</a></li>
+
+      <li><a class="shuffle-button" href="http://9gag.com/random" onclick="GAG.GA.track(&#39;Random&#39;, &#39;Clicked&#39;, &#39;Nav&#39;);"><strong>Shuffle</strong></a></li>
+      <li><a class="search-button search-toggler" href="javascript:void(0);"><strong>Search</strong></a></li>
+
+
+    </ul>
+
+
+  </div>
+</div><!--end headbar-wrap-->
 
