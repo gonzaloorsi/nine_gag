@@ -47,7 +47,7 @@
 
     Comments ( <%= image.microposts.count %> )
    
-    <%= form_for @micropost, :url => image_comment_path(image) do |comment| %>
+    <%= form_for [image,@micropost] do |comment| %>
       <div class="field">
         <%= comment.text_area :content, placeholder: "Compose new comment..." %>
       </div>

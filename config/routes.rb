@@ -1,17 +1,15 @@
 NineGag::Application.routes.draw do
 
-  resources :microposts, only: [:create, :destroy]
-
   resources :images do
-  match '/like',    to: 'images#upvote'
-  match '/dislike', to: 'images#downvote'
-  match '/comment', to: 'images#comment'
+    match '/like',    to: 'images#upvote'
+    match '/dislike', to: 'images#downvote'
+
+    resources :microposts
   end
 
-  resources :images, :has_many => :microposts
   devise_for :users
 
- 
+
 
 
   root :to => 'home#index'
@@ -19,7 +17,7 @@ NineGag::Application.routes.draw do
   match '/about',   to: 'home#about'
   match '/images',  to: 'images#destroy', via: :delete
   match '/profile', to: 'home#profile'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -69,13 +67,13 @@ NineGag::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   
-   
+
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  
+
 end

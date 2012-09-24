@@ -36,21 +36,9 @@ def downvote
   unlikes = image.unlikes || []
   image.update_attributes(:unlikes => unlikes << current_user.id) unless (unlikes.include?(current_user.id) ||
       image.likes.to_a.include?(current_user.id))
-  
+
   redirect_to root_path, notice: "You don't like photo!"
 end
 
-def comment
-
-  image = Image.find(params[:image_id])
-  @micropost = current_user.microposts.build(params[:micropost])
-
-  if @micropost.save
-      flash[:notice] = "Comment created!"
-      redirect_to root_url
-  end
-
-  @micropost.update_attributes(:image_id => image.id) if @micropost
-end
 
 end
