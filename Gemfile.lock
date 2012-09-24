@@ -67,14 +67,11 @@ GEM
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
     json (1.7.5)
-<<<<<<< HEAD
-    launchy (2.1.0)
-      addressable (~> 2.2.6)
-=======
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
->>>>>>> 697ab6a4bc953047601264ebc74b204b80aaa83a
+    launchy (2.1.0)
+      addressable (~> 2.2.6)
     libv8 (3.3.10.4)
     mail (2.4.4)
       i18n (>= 0.4.0)
