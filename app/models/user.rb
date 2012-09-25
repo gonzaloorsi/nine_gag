@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   before_create :set_name
 
   def set_name
-    p email.inspect
+   
     self.name = email.split("@").first.split(".").first
   end
 

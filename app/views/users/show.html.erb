@@ -1,0 +1,24 @@
+<% if current_user %>
+<hr/><br/>
+
+<%if @user.admin?%>
+Admin
+<%else%>
+User
+<%end%>
+<br/><br/><hr/>
+
+Name: <%= @user.name.capitalize %>
+<br/>
+Email: <%= @user.email %>
+<br/>
+
+
+<h1><%=  gravatar_for(@user) %></h1>
+<hr/><br/>
+
+Comments (<%= @user.microposts.count %>)
+<br/>
+Uploaded images (<%= @user.images.count %>)
+<br/><br/><hr/>
+<% end %>

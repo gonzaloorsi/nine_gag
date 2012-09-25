@@ -1,6 +1,15 @@
 
 <% @images.each do |image| %>
+<% if current_user %>
+<b class="mini_view">Uploaded by:
+<% @users.each do |user| %>
+  <% if user.id == image.user_id %>
+    <%= link_to user.name.capitalize, user_path(image.user_id)%></b>
+  <% end %>
+<% end %>
 
+<br/>
+<% end %>
 <%= link_to(image_tag(image.picture.url(:medium)),image) %>
 
 <% if current_user && current_user.admin?%>
@@ -53,17 +62,29 @@
       </div>
       <%= comment.submit "Comment" %>
     <% end %>
-       <br/>
-       <% @microposts.each do |m| %>
-        <% if(m.image_id == image.id) %>
+
+<br/>
+       
+    <% @microposts.each do |m| %>
+       
+       <% if(m.image_id == image.id) %>
+        <% if (m.user_id == current_user.id || current_user.admin?)%>
+        
+         <%= link_to "Delete", image_micropost_path(image, m),:method => :delete %>
+    
+            
+
+        <% end %>
+
           <% @users.each do |user| %>
             <%if(user.id == m.user_id)%>
               <%= user.name.capitalize %>
             <% end %>
           <% end %>
-     says: <b style="color: maroon;"><%= m.content%></b>
-    <br/>
-          
+
+        says: <b style="color: maroon;"> <%= m.content%></b>
+  <br/>
+         
        <% end %>
       <% end %>
 <% end %>

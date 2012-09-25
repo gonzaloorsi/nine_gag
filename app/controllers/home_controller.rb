@@ -3,6 +3,7 @@ class HomeController < ApplicationController
     @image = Image.new
     @images = Image.page(params[:page] || 0).per(5)
     @users = User.all
+    
     @micropost = Micropost.new
     @microposts = Micropost.all
   end
@@ -18,5 +19,5 @@ class HomeController < ApplicationController
   def profile
     
   end
-
+  
 end

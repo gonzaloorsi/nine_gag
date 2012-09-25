@@ -1,5 +1,8 @@
 <%  if current_user %>
 <h1>Your PROFILE</h1>
+Comments (<%= current_user.microposts.count %>)
+<br/>
+Uploaded images (<%= current_user.images.count %>)
 <hr/>
 <br/>
 <%if current_user.admin?%>
@@ -7,7 +10,7 @@ Admin
 <%else%>
 User
 <%end%>
-<br/>
+<br/><br/>
 <hr/>
 Name: <%= current_user.name.capitalize %>
 <br/>
@@ -16,4 +19,6 @@ Email: <%= current_user.email %>
 
 
 <h1><%=  gravatar_for(current_user) %></h1>
+<br/>
+<%= link_to "Delete your profile", user_path(current_user.id), :method => :delete %>
 <% end %>
